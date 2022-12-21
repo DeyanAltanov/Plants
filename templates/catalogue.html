@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style/style.css">
+    <title>MyPlantApp</title>
+</head>
+
+<body>
+<div id="box">
+    <header>
+        <h1><a class="index-navigation" href="{% url 'home' %}">MyPlants</a></h1>
+        <nav>
+            <a href="{% url 'catalogue' %}">Catalogue</a>
+            <a href="{% url 'create plant' %}">Create Plant</a>
+            <a href="{% url 'profile details' %}">Profile</a>
+        </nav>
+    </header>
+
+        {% if not plants %}
+        <p class="no-articles">No plants yet</p>
+
+        {% elif plants %}
+        <section id="catalogue">
+        {% for plant in plants %}
+            <div class="plant-card">
+                <div class="image-wrap">
+                    <img src="{{ plant.image_url }}"
+                             alt=""/>
+                    </div>
+                    <h3>{{ plant.name }}</h3>
+                    <h1>{{ plant.description }}</h1>
+                    <div class="details-buttons">
+                        <a href="{% url 'plant details' plant.id %}" class="details-btn">Details</a>
+                    </div>
+                </div>
+        {% endfor %}
+        </section>
+
+    {% endif %}
+</div>
+</body>
+</html>
