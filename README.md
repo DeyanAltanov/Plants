@@ -1,2 +1,1 @@
-# Plants
-Exercising Django
+# Exercising Django
